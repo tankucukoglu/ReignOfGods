@@ -1,2 +1,3 @@
-# RPGjava
-Testing things around with this RPG game.
+# RPGjava (working on a title)
+Written by KG
+Coded by TK
