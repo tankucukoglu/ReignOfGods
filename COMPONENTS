@@ -1,0 +1,10 @@
+
+Character -> Element
+Character -> Item
+
+Element -> Skill
+
+Skill -> Level
+Item -> Level
+
+...
