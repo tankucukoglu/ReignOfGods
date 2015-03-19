@@ -2,7 +2,7 @@ package characters;
 
 import javax.swing.ImageIcon;
 
-import elements.Element;
+import components.Element;
 
 public class Character{
 	private String name;
