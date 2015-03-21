@@ -1,39 +1,28 @@
 package driver;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
 
 import components.Skill;
 import database.SkillCollection;
+import components.Item;
+import database.ItemCollection;
 
-public class Driver {
+public class Driver{
 
-	private static JFrame frame;
-
-	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable(){ 
-//			public void run(){
-//				try{
-//					Driver window = new Driver();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//		
-//		frame = new JFrame();
-//		frame.setBounds(100, 100, 640, 480);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public static void main(String[] args){
 		
-		// testing skills file
+		// testing skills and items files
 		
 		SkillCollection skills = new SkillCollection();
+		ItemCollection items = new ItemCollection();
 		
 		ArrayList<Skill> test = skills.getSkills();
+		ArrayList<Item> test2 = items.getItems();
 		
+		for(int i = 0; i < test2.size(); i++){
+			System.out.println(test2.get(i));
+		}
+		System.out.println();
 		for(int i = 0; i < test.size(); i++){
 			System.out.println(test.get(i));
 		}
