@@ -84,6 +84,22 @@ public class Character{
 		inventory = new ItemCollection();
 		statset = new Stat();
 		levels = new Level();
+		
+		if(element.getName() == "Air"){
+			
+		}
+		else if(element.getName() == "Earth"){
+			
+		}
+		else if(element.getName() == "Fire"){
+			
+		}
+		else if(element.getName() == "Lightning"){
+			
+		}
+		else if(element.getName() == "Water"){
+			
+		}
 	}
 	
 }
