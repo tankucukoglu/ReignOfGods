@@ -3,6 +3,9 @@ package characters;
 import javax.swing.ImageIcon;
 
 import components.Element;
+import components.Level;
+import components.Stat;
+import database.ItemCollection;
 
 public class Character{
 	private String name;
@@ -12,6 +15,12 @@ public class Character{
 	
 	private Element element;
 	
+	private ItemCollection inventory; // unique inventories?
+	
+	private Stat statset; // stat curves...
+
+	private Level levels; // ...with levels
+	
 	public Character(){
 		name = "";
 		gender = "";
@@ -19,6 +28,12 @@ public class Character{
 		icon = null;
 		
 		element = null;
+		
+		inventory = null;
+		
+		statset = null;
+		
+		levels = null;
 		
 		loadCharacter();
 	}
@@ -46,8 +61,29 @@ public class Character{
 	public void setImg(ImageIcon img){
 		icon = img;
 	}
+	public ItemCollection getInventory(){
+		return inventory;
+	}
+	public void setInventory(ItemCollection inv){
+		inventory = inv;
+	}
+	public Stat getStats(){
+		return statset;
+	}
+	public void setStats(Stat s){
+		statset = s;
+	}
+	public Level getLevel(){
+		return levels;
+	}
+	public void setLevel(Level lvl){
+		levels = lvl;
+	}
 	public void loadCharacter(){
-		
+		element = new Element();
+		inventory = new ItemCollection();
+		statset = new Stat();
+		levels = new Level();
 	}
 	
 }
