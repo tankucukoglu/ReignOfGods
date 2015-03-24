@@ -6,6 +6,7 @@ import components.Element;
 import components.Level;
 import components.Stat;
 import database.ItemCollection;
+import database.StatCurve;
 
 public class Character{
 	private String name;
@@ -17,7 +18,7 @@ public class Character{
 	
 	private ItemCollection inventory; // unique inventories?
 	
-	private Stat statset; // stat curves...
+	private StatCurve statset; // stat curves...
 
 	private Level levels; // ...with levels
 	
@@ -67,10 +68,10 @@ public class Character{
 	public void setInventory(ItemCollection inv){
 		inventory = inv;
 	}
-	public Stat getStats(){
+	public StatCurve getStats(){
 		return statset;
 	}
-	public void setStats(Stat s){
+	public void setStats(StatCurve s){
 		statset = s;
 	}
 	public Level getLevel(){
@@ -82,23 +83,23 @@ public class Character{
 	public void loadCharacter(){
 		element = new Element();
 		inventory = new ItemCollection();
-		statset = new Stat();
+		statset = new StatCurve();
 		levels = new Level();
 		
 		if(element.getName() == "Air"){
-			
+			statset.loadAir();
 		}
 		else if(element.getName() == "Earth"){
-			
+			statset.loadEarth();
 		}
 		else if(element.getName() == "Fire"){
-			
+			statset.loadFire();
 		}
 		else if(element.getName() == "Lightning"){
-			
+			statset.loadLightning();
 		}
 		else if(element.getName() == "Water"){
-			
+			statset.loadWater();
 		}
 	}
 	
