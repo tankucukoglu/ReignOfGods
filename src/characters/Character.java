@@ -3,7 +3,6 @@ package characters;
 import javax.swing.ImageIcon;
 
 import components.Element;
-import components.Level;
 import components.Stat;
 import database.ItemCollection;
 import database.StatCurve;
@@ -20,7 +19,9 @@ public class Character{
 	
 	private StatCurve statset; // stat curves...
 
-	private Level levels; // ...with levels
+	private int level; // ...with levels
+	
+	private final int MAX_LEVEL = 100;
 	
 	public Character(){
 		name = "";
@@ -34,7 +35,7 @@ public class Character{
 		
 		statset = null;
 		
-		levels = null;
+		level = 0;
 		
 		loadCharacter();
 	}
@@ -74,17 +75,19 @@ public class Character{
 	public void setStats(StatCurve s){
 		statset = s;
 	}
-	public Level getLevel(){
-		return levels;
+	public int getLevel(){
+		return level;
 	}
-	public void setLevel(Level lvl){
-		levels = lvl;
+	public void setLevel(int lvl){
+		if(lvl <= MAX_LEVEL){
+			level = lvl;
+		}
+		
 	}
 	public void loadCharacter(){
 		element = new Element();
 		inventory = new ItemCollection();
 		statset = new StatCurve();
-		levels = new Level();
 		
 		if(element.getName() == "Air"){
 			statset.loadAir();
@@ -100,6 +103,9 @@ public class Character{
 		}
 		else if(element.getName() == "Water"){
 			statset.loadWater();
+		}
+		else{
+			statset = null;
 		}
 	}
 	
