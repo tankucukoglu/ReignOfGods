@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import components.Item;
-//import components.Skill;
 
 public class ItemCollection {
 	private ArrayList<Item> items;

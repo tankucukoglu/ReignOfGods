@@ -1,5 +1,7 @@
 package characters;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import components.Element;
@@ -10,15 +12,12 @@ import database.StatCurve;
 public class Character{
 	private String name;
 	private String gender;
-	
 	private ImageIcon icon; // maybe?
 	
 	private Element element;
-	
 	private ItemCollection inventory; // unique inventories?
-	
-	private StatCurve statset; // stat curves...
-
+	private StatCurve statCurve; // stat curves...
+	private ArrayList<Stat> statSet;
 	private int level; // ...with levels
 	
 	private final int MAX_LEVEL = 100;
@@ -26,15 +25,12 @@ public class Character{
 	public Character(){
 		name = "";
 		gender = "";
-		
 		icon = null;
 		
 		element = null;
-		
 		inventory = null;
-		
-		statset = null;
-		
+		statCurve = null;
+		statSet = null;
 		level = 0;
 		
 		loadCharacter();
@@ -69,11 +65,11 @@ public class Character{
 	public void setInventory(ItemCollection inv){
 		inventory = inv;
 	}
-	public StatCurve getStats(){
-		return statset;
+	public StatCurve getStatCurve(){
+		return statCurve;
 	}
-	public void setStats(StatCurve s){
-		statset = s;
+	public ArrayList<Stat> getStats(){
+		return statSet;
 	}
 	public int getLevel(){
 		return level;
@@ -82,31 +78,31 @@ public class Character{
 		if(lvl <= MAX_LEVEL){
 			level = lvl;
 		}
-		
 	}
 	public void loadCharacter(){
 		element = new Element();
+		level = 1;
 		inventory = new ItemCollection();
-		statset = new StatCurve();
+		statCurve = new StatCurve();
+		statSet = new ArrayList<Stat>();
 		
 		if(element.getName() == "Air"){
-			statset.loadAir();
+			statSet = statCurve.loadAir();
 		}
 		else if(element.getName() == "Earth"){
-			statset.loadEarth();
+			statSet = statCurve.loadEarth();
 		}
 		else if(element.getName() == "Fire"){
-			statset.loadFire();
+			statSet = statCurve.loadFire();
 		}
 		else if(element.getName() == "Lightning"){
-			statset.loadLightning();
+			statSet = statCurve.loadLightning();
 		}
 		else if(element.getName() == "Water"){
-			statset.loadWater();
+			statSet = statCurve.loadWater();
 		}
 		else{
-			statset = null;
+			statSet = null;
 		}
 	}
-	
 }

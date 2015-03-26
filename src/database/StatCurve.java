@@ -3,7 +3,6 @@ package database;
 import java.util.ArrayList;
 
 import components.Stat;
-import characters.Character;
 
 public class StatCurve{
 	
@@ -12,7 +11,8 @@ public class StatCurve{
 	private ArrayList<Stat> statsPerLevelFire;
 	private ArrayList<Stat> statsPerLevelLightning;
 	private ArrayList<Stat> statsPerLevelWater;
-	private Character defaultChar;
+	
+	private final int MAX_LEVEL = 100;
 	
 	private Stat newStat;
 	
@@ -23,30 +23,12 @@ public class StatCurve{
 		statsPerLevelLightning = new ArrayList<Stat>();
 		statsPerLevelWater = new ArrayList<Stat>();
 		
-		defaultChar = new Character();
-		
 		newStat = new Stat();
 		
-		defaultChar.setLevel(100);
-		
-		// maybe just use int instead of char object?
-		
-		// we'll see if this works...
-		loadAir();
-		loadEarth();
-		loadFire();
-		loadLightning();
-		loadWater();
 	}
-//	public ArrayList<Stat> getSPL(){
-//		return statsPerLevel;
-//	}
-//	public void setSPL(ArrayList<Stat> spl){
-//		statsPerLevel = spl;
-//	}
-	public void loadAir(){
+	public ArrayList<Stat> loadAir(){
 		int x = 1;
-		for(int i = 1; i <= defaultChar.getLevel(); i++){
+		for(int i = 1; i <= MAX_LEVEL; i++){
 			// need separate stats
 			newStat.setAgi(x);
 			newStat.setAtk(x);
@@ -58,25 +40,30 @@ public class StatCurve{
 			statsPerLevelAir.add(newStat);
 			x += 2;
 		}
+		return statsPerLevelAir;
 	}
-	public void loadEarth(){
-		for(int i = 1; i <= defaultChar.getLevel(); i++){
+	public ArrayList<Stat> loadEarth(){
+		for(int i = 1; i <= MAX_LEVEL; i++){
 			
 		}
+		return statsPerLevelEarth;
 	}
-	public void loadFire(){
-		for(int i = 1; i <= defaultChar.getLevel(); i++){
+	public ArrayList<Stat> loadFire(){
+		for(int i = 1; i <= MAX_LEVEL; i++){
 			
 		}
+		return statsPerLevelFire;
 	}
-	public void loadLightning(){
-		for(int i = 1; i <= defaultChar.getLevel(); i++){
+	public ArrayList<Stat> loadLightning(){
+		for(int i = 1; i <= MAX_LEVEL; i++){
 			
 		}
+		return statsPerLevelLightning;
 	}
-	public void loadWater(){
-		for(int i = 1; i <= defaultChar.getLevel(); i++){
+	public ArrayList<Stat> loadWater(){
+		for(int i = 1; i <= MAX_LEVEL; i++){
 			
 		}
+		return statsPerLevelWater;
 	}
 }
