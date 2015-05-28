@@ -10,11 +10,14 @@
     <property name="source" value="1.8"/>
     <path id="RPGjava.classpath">
         <pathelement location="bin"/>
+        <pathelement location="lib/lwjgl.jar"/>
+        <pathelement location="lib/slick.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -48,6 +51,7 @@
     </target>
     <target name="Driver">
         <java classname="driver.Driver" failonerror="true" fork="yes">
+            <arg line="-Djava.library.path"/>
             <classpath refid="RPGjava.classpath"/>
         </java>
     </target>
