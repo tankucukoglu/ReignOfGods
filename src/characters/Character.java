@@ -1,26 +1,24 @@
 package characters;
 
-import graphics.SpriteManage;
+import management.SpriteManager;
 import driver.Driver;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class Character implements KeyListener{
+public class Character{
 	
 	private int x, y;
-	private SpriteManage sm;
+	private SpriteManager sm;
 	private boolean up = false, down = false, left = false, right = false;
 	private final int SPEED = 3;
 	private int playerCol, playerRow;
 	
-	public Character(int xc, int yc, SpriteManage spriteManager){
+	public Character(int xc, int yc, SpriteManager spriteManager){
 		x = xc;
 		y = yc;
 		sm = spriteManager;
 		playerCol = 0;
-		playerRow = 0;
+		playerRow = 2;
 	}
 	
 	public void tick(){
@@ -40,46 +38,27 @@ public class Character implements KeyListener{
 		}
 	}
 	public void render(Graphics g){
-		g.drawImage(sm.crop(playerCol, playerRow, 32, 36), x, y, 16 * Driver.SCALE, 16 * Driver.SCALE, null);
+		g.drawImage(sm.crop(playerCol, playerRow, 32, 36), x, y, 
+				Driver.getTilesize() * Driver.getScale(), Driver.getTilesize() * Driver.getScale(), null);
 	}
-
-	public void keyPressed(KeyEvent e){
-		
-		// implement WASD
-		if(e.getKeyCode() == KeyEvent.VK_UP){
-			up = true;
-			playerCol = 0;
-			playerRow = 0;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			down = true;
-			playerCol = 0;
-			playerRow = 2;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			left = true;
-			playerCol = 0;
-			playerRow = 3;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			right = true;
-			playerCol = 0;
-			playerRow = 1;
-		}
+	
+	public void setUp(boolean u){
+		up = u;
 	}
-	public void keyReleased(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_UP){
-			up = false;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			down = false;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT){
-			left = false;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-			right = false;
-		}
+	public void setDown(boolean d){
+		down = d;
 	}
-	public void keyTyped(KeyEvent e){}
+	public void setLeft(boolean l){
+		left = l;
+	}
+	public void setRight(boolean r){
+		right = r;
+	}
+	public void setCol(int col){
+		playerCol = col;
+	}
+	public void setRow(int row){
+		playerRow = row;
+	}
+	
 }

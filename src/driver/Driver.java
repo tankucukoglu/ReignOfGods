@@ -1,7 +1,8 @@
 package driver;
 
 import graphics.ImageLoader;
-import graphics.SpriteManage;
+import management.KeyManager;
+import management.SpriteManager;
 import characters.Character;
 
 import java.awt.Canvas;
@@ -9,29 +10,29 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
 
 public class Driver extends Canvas implements Runnable{
 	
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 360, HEIGHT = 240, SCALE = 2;
-	public static boolean running = false;
-	public Thread gameThread;
+	private static final int WIDTH = 360, HEIGHT = 240, SCALE = 2, TILESIZE = 16;
+	private static boolean running = false;
+	private Thread gameThread;
 	
 	private BufferedImage spriteSheet;
 	
-	private Character player;
+	private static Character player;
 	
 	public void init(){
 		ImageLoader loader = new ImageLoader();
 		spriteSheet = loader.load("res/images/warrior_m.png");
 		
-		SpriteManage sm = new SpriteManage(spriteSheet);
+		SpriteManager sm = new SpriteManager(spriteSheet);
 
 		player = new Character(0, 0, sm);
-		this.addKeyListener(player);
+		this.addKeyListener(new KeyManager());
 	}
-	
 	private void tick(){
 		player.tick();
 	}
@@ -51,24 +52,6 @@ public class Driver extends Canvas implements Runnable{
 		g.dispose();
 		buf.show();
 	}
-	
-	public synchronized void start(){
-		if(running)return;
-		running = true;
-		gameThread = new Thread(this);
-		gameThread.start();
-		
-	}
-	public synchronized void stop(){
-		if(!running)
-			return;
-		running = false;
-		try{
-			gameThread.join();
-		}catch(InterruptedException e){ e.printStackTrace(); }
-	}
-	
-	@Override
 	public void run(){
 		
 		init();
@@ -90,6 +73,45 @@ public class Driver extends Canvas implements Runnable{
 		}
 		stop();
 	}
+	
+	// thread methods
+	public synchronized void start(){
+		if(running)return;
+		running = true;
+		gameThread = new Thread(this);
+		gameThread.start();
+		
+	}
+	public synchronized void stop(){
+		if(!running)
+			return;
+		running = false;
+		try{
+			gameThread.join();
+		}catch(InterruptedException e){ e.printStackTrace(); }
+	}
+
+	// getters
+	public static Character getPlayer(){
+		return player;
+	}
+	public int getWidth(){
+		return WIDTH;
+	}
+	public int getHeight(){
+		return HEIGHT;
+	}
+	public static int getScale(){
+		return SCALE;
+	}
+	public static int getTilesize(){
+		return TILESIZE;
+	}
+	public boolean getRunning(){
+		return running;
+	}
+	
+	
 	public static void main(String[] args){
 		
 		Driver game = new Driver();

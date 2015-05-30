@@ -1,12 +1,12 @@
-package graphics;
+package management;
 
 import java.awt.image.BufferedImage;
 
-public class SpriteManage{
+public class SpriteManager{
 	
 	private BufferedImage sheet;
 	
-	public SpriteManage (BufferedImage spriteSheet){
+	public SpriteManager(BufferedImage spriteSheet){
 		sheet = spriteSheet;
 	}
 	
