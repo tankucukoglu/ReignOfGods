@@ -16,6 +16,4 @@ public class ImageManager{
 	public BufferedImage getGrassTiles(){
 		return grassTiles;
 	}
-
-	
 }

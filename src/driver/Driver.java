@@ -95,20 +95,11 @@ public class Driver extends Canvas implements Runnable{
 	public static Character getPlayer(){
 		return player;
 	}
-	public int getWidth(){
-		return WIDTH;
-	}
-	public int getHeight(){
-		return HEIGHT;
-	}
 	public static int getScale(){
 		return SCALE;
 	}
 	public static int getTilesize(){
 		return TILESIZE;
-	}
-	public boolean getRunning(){
-		return running;
 	}
 	
 	
