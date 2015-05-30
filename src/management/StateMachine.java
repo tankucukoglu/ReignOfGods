@@ -12,7 +12,7 @@ public class StateMachine{
 		states.add("Local Map");
 		states.add("Battle");
 		states.add("Menu");
-		// add more
+		// add more?
 	}
 	
 	public void updateState(float elapsedTime){
@@ -41,9 +41,5 @@ public class StateMachine{
 	}
 	public void onExit(){
 		
-	}
-	public void addState(String stateName){
-		
-		states.add(stateName);
 	}
 }

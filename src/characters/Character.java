@@ -1,108 +1,85 @@
 package characters;
 
-import java.util.ArrayList;
+import graphics.SpriteManage;
+import driver.Driver;
 
-import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import components.Element;
-import components.Stat;
-import database.ItemCollection;
-import database.StatCurve;
+public class Character implements KeyListener{
+	
+	private int x, y;
+	private SpriteManage sm;
+	private boolean up = false, down = false, left = false, right = false;
+	private final int SPEED = 3;
+	private int playerCol, playerRow;
+	
+	public Character(int xc, int yc, SpriteManage spriteManager){
+		x = xc;
+		y = yc;
+		sm = spriteManager;
+		playerCol = 0;
+		playerRow = 0;
+	}
+	
+	public void tick(){
+		
+		// prevented diagonal movement
+		if(up){
+			y -= SPEED;
+		}
+		else if(down){
+			y += SPEED;
+		}
+		else if(left){
+			x -= SPEED;
+		}
+		else if(right){
+			x += SPEED;
+		}
+	}
+	public void render(Graphics g){
+		g.drawImage(sm.crop(playerCol, playerRow, 32, 36), x, y, 16 * Driver.SCALE, 16 * Driver.SCALE, null);
+	}
 
-public class Character{
-	private String name;
-	private String gender;
-	private ImageIcon icon; // maybe?
-	
-	private Element element;
-	private ItemCollection inventory; // unique inventories?
-	private StatCurve statCurve; // stat curves...
-	private ArrayList<Stat> statSet;
-	private int level; // ...with levels
-	
-	private final int MAX_LEVEL = 100;
-	
-	public Character(){
-		name = "";
-		gender = "";
-		icon = null;
+	public void keyPressed(KeyEvent e){
 		
-		element = null;
-		inventory = null;
-		statCurve = null;
-		statSet = null;
-		level = 0;
-		
-		loadCharacter();
-	}
-	public String getName(){
-		return name;
-	}
-	public void setName(String n){
-		name = n;		
-	}
-	public String getGender(){
-		return gender;
-	}
-	public void setGender(String g){
-		gender = g;
-	}
-	public Element getElement(){
-		return element;
-	}
-	public void setElement(Element e){
-		element = e;
-	}
-	public ImageIcon getImg(){
-		return icon;
-	}
-	public void setImg(ImageIcon img){
-		icon = img;
-	}
-	public ItemCollection getInventory(){
-		return inventory;
-	}
-	public void setInventory(ItemCollection inv){
-		inventory = inv;
-	}
-	public StatCurve getStatCurve(){
-		return statCurve;
-	}
-	public ArrayList<Stat> getStats(){
-		return statSet;
-	}
-	public int getLevel(){
-		return level;
-	}
-	public void setLevel(int lvl){
-		if(lvl <= MAX_LEVEL){
-			level = lvl;
+		// implement WASD
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			up = true;
+			playerCol = 0;
+			playerRow = 0;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			down = true;
+			playerCol = 0;
+			playerRow = 2;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			left = true;
+			playerCol = 0;
+			playerRow = 3;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			right = true;
+			playerCol = 0;
+			playerRow = 1;
 		}
 	}
-	public void loadCharacter(){
-		element = new Element();
-		level = 1;
-		inventory = new ItemCollection();
-		statCurve = new StatCurve();
-		statSet = new ArrayList<Stat>();
-		
-		if(element.getName() == "Air"){
-			statSet = statCurve.loadAir();
+	public void keyReleased(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			up = false;
 		}
-		else if(element.getName() == "Earth"){
-			statSet = statCurve.loadEarth();
+		if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			down = false;
 		}
-		else if(element.getName() == "Fire"){
-			statSet = statCurve.loadFire();
+		if(e.getKeyCode() == KeyEvent.VK_LEFT){
+			left = false;
 		}
-		else if(element.getName() == "Lightning"){
-			statSet = statCurve.loadLightning();
-		}
-		else if(element.getName() == "Water"){
-			statSet = statCurve.loadWater();
-		}
-		else{
-			statSet = null;
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+			right = false;
 		}
 	}
+	public void keyTyped(KeyEvent e){}
 }
