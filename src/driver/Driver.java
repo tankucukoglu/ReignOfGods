@@ -102,7 +102,6 @@ public class Driver extends Canvas implements Runnable{
 		return TILESIZE;
 	}
 	
-	
 	public static void main(String[] args){
 		
 		Driver game = new Driver();
@@ -116,6 +115,7 @@ public class Driver extends Canvas implements Runnable{
 		frame.setResizable(false);
 		frame.add(game);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		
 		game.start();
 		game.requestFocus();
