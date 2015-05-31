@@ -26,7 +26,7 @@ public class Driver extends Canvas implements Runnable{
 	
 	public void init(){
 		ImageLoader loader = new ImageLoader();
-		spriteSheet = loader.load("res/images/warrior_m.png");
+		spriteSheet = loader.loadImage("res/images/warrior_m.png");
 		
 		SpriteManager sm = new SpriteManager(spriteSheet);
 
@@ -104,20 +104,23 @@ public class Driver extends Canvas implements Runnable{
 	
 	public static void main(String[] args){
 		
-		Driver game = new Driver();
-		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+//		Driver game = new Driver();
+//		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+//		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+//		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+//		
+//		JFrame frame = new JFrame("RPGjava");
+//		frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setResizable(false);
+//		frame.add(game);
+//		frame.setVisible(true);
+//		frame.setLocationRelativeTo(null);
+//		
+//		game.start();
+//		game.requestFocus();
 		
-		JFrame frame = new JFrame("RPGjava");
-		frame.setSize(WIDTH * SCALE, HEIGHT * SCALE);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.add(game);
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-		
+		Game game = new Game("RPGjava", 640, 480);
 		game.start();
-		game.requestFocus();
 	}
 }

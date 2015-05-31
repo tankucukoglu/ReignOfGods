@@ -7,11 +7,13 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader{
 	
-	public BufferedImage load(String path){
+	public BufferedImage loadImage(String path){
 		try{
 			return ImageIO.read(new File(path));
-		}catch (IOException e){ e.printStackTrace(); }
-		
+		}catch (IOException e){ 
+			e.printStackTrace();
+			System.exit(1);
+		}
 		return null;
 	}
 }

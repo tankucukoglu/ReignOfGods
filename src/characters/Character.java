@@ -42,6 +42,7 @@ public class Character{
 				Driver.getTilesize() * Driver.getScale(), Driver.getTilesize() * Driver.getScale(), null);
 	}
 	
+	// setters & getters
 	public void setUp(boolean u){
 		up = u;
 	}
@@ -60,5 +61,22 @@ public class Character{
 	public void setRow(int row){
 		playerRow = row;
 	}
-	
+	public boolean getUp(){
+		return up;
+	}
+	public boolean getDown(){
+		return down;
+	}
+	public boolean getLeft(){
+		return left;
+	}
+	public boolean getRight(){
+		return right;
+	}
+	public int getCol(){
+		return playerCol;
+	}
+	public int getRow(){
+		return playerRow;
+	}
 }
