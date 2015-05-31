@@ -6,25 +6,30 @@ import management.SpriteManager;
 
 public class ImageAssets{
 	
-	private final int WIDTH = 32, HEIGHT = 32;
+	private static final int WIDTH = 32, HEIGHT = 32;
 	
-	private BufferedImage[] desert, dirt, grass, mud, road, snow, tree, water;
+	public static BufferedImage[] desert, dirt, grass, mud, road, snow, tree, water;
 	
-	public ImageAssets(){
+	public static void init(){
+		
+		ImageLoader loader = new ImageLoader();
+		SpriteManager grassSheet = new SpriteManager(loader.loadImage("res/images/environment_tilesets/grass.png"));
 		
 		desert = new BufferedImage[35];
 		dirt = new BufferedImage[35];
-		grass = new BufferedImage[35];
+		grass = new BufferedImage[12];
+		int i = 0;
+		for(int y = 0; y < 4; y++){
+			for(int x = 0; x < 3; x++){
+				grass[i] = grassSheet.crop(x, y, WIDTH, HEIGHT);
+				i++;
+			}
+		}
 		mud = new BufferedImage[35];
 		road = new BufferedImage[35];
 		snow = new BufferedImage[35];
 		tree = new BufferedImage[35];
 		water = new BufferedImage[35];
-	}
-	
-	public void init(){
-		
-		ImageLoader loader = new ImageLoader();
 		
 		// iterate with spritemanager		
 	}

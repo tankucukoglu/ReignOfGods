@@ -5,6 +5,9 @@ import graphics.ImageAssets;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import states.GameState;
+import states.State;
+
 public class Game implements Runnable{
 	
 	private Display display;
@@ -16,6 +19,8 @@ public class Game implements Runnable{
 	
 	private BufferStrategy buf;
 	private Graphics g;
+	
+	private State gameState;
 
 	public Game(String dTitle, int dWidth, int dHeight){
 		
@@ -25,16 +30,20 @@ public class Game implements Runnable{
 	}
 	private void init(){
 		
-		// initialize images
-		ImageAssets imageAssets = new ImageAssets();
-		imageAssets.init();
-		
 		// create display
 		display = new Display(title, width, height);
 		
+		// initialize images
+		ImageAssets.init();
+		
+		gameState = new GameState();
+		State.setState(gameState);
+		
 	}
 	private void update(){
-		
+		if(State.getState() != null){
+			State.getState().update();
+		}
 	}
 	private void render(){
 		buf = display.getCanvas().getBufferStrategy();
@@ -48,7 +57,10 @@ public class Game implements Runnable{
 		g.clearRect(0, 0, width, height);
 		// draw here
 		
-		//g.fillRect(0, 0, width, height);		
+		//g.fillRect(0, 0, width, height);	
+		if(State.getState() != null){
+			State.getState().render(g);
+		}
 		
 		// draw end
 		buf.show();
@@ -58,9 +70,33 @@ public class Game implements Runnable{
 	public void run(){
 		init();
 		
+		int fps = 30;
+		double timePerUpdate = 1000000000 / fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		
+		long timer = 0;
+		int ticks = 0;
+		
 		while(running){
-			update();
-			render();
+			now = System.nanoTime();
+			delta += (now - lastTime) / timePerUpdate;
+			timer += now - lastTime;
+			lastTime = now;
+			
+			if(delta >= 1){
+				update();
+				render();
+				ticks++;
+				delta--;
+			}
+			if(timer >= 1000000000){
+				System.out.println("Frames per second: " + ticks);
+				ticks = 0;
+				timer = 0;
+			}
+			
 		}
 		stop();
 	}
