@@ -11,6 +11,6 @@ public class SpriteManager{
 	}
 	
 	public BufferedImage crop(int col, int row, int w, int h){
-		return sheet.getSubimage(col * w, row * h, w, h);
+		return sheet.getSubimage(col * w, row * h, w, h); // select tile according to column, row, width, height
 	}
 }

@@ -10,7 +10,7 @@ import java.awt.image.BufferStrategy;
 
 import management.KeyManager;
 
-public class Game implements Runnable{
+public class Game implements Runnable{ // implemented runnable for threading
 	
 	private Display display;
 	private String title;
@@ -34,6 +34,8 @@ public class Game implements Runnable{
 		height = dHeight;
 		keyManager = new KeyManager();
 	}
+	
+	// initialize everything at the beginning
 	private void init(){
 		
 		// create display
@@ -50,6 +52,7 @@ public class Game implements Runnable{
 		State.setState(gameState);
 		
 	}
+	// update states, inputs...
 	private void update(){
 		keyManager.update();
 		
@@ -57,6 +60,8 @@ public class Game implements Runnable{
 			State.getState().update();
 		}
 	}
+	
+	// render graphics
 	private void render(){
 		buf = display.getCanvas().getBufferStrategy();
 		if(buf == null){
@@ -78,10 +83,16 @@ public class Game implements Runnable{
 		buf.show();
 		g.dispose();
 	}
-
+	
+	public KeyManager getKeyManager(){
+		return keyManager;
+	}
+	
+	// runs the entire system, continuously update and render
 	public void run(){
 		init();
 		
+		// (try to) restrict fps to 60 on all systems
 		int fps = 60;
 		double timePerUpdate = 1000000000 / fps;
 		double delta = 0;
@@ -98,6 +109,7 @@ public class Game implements Runnable{
 			lastTime = now;
 			
 			if(delta >= 1){
+				// loop update and render
 				update();
 				render();
 				ticks++;
@@ -112,10 +124,7 @@ public class Game implements Runnable{
 		}
 		stop();
 	}
-	public KeyManager getKeyManager(){
-		return keyManager;
-	}
-	
+	// thread methods
 	public synchronized void start(){
 		if(!running){
 			running = true;

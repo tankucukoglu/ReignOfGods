@@ -19,10 +19,10 @@ public class KeyManager implements KeyListener{
 		right = keys[KeyEvent.VK_RIGHT];
 	}	
 	public void keyPressed(KeyEvent e){
-		keys[e.getKeyCode()] = true;
+		keys[e.getKeyCode()] = true; // set key code true if a key is pressed
 	}
 	public void keyReleased(KeyEvent e){
-		keys[e.getKeyCode()] = false;
+		keys[e.getKeyCode()] = false; // set key code false if a key is released
 	}
 	public void keyTyped(KeyEvent e){}
 	
