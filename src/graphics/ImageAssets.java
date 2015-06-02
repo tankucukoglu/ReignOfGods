@@ -10,6 +10,7 @@ public class ImageAssets{
 	
 	public static BufferedImage[] desert, dirt, grass, mud, road, snow, tree, water;
 	public static BufferedImage[] player;
+	public static BufferedImage rock;
 	
 	public static void init(){
 		
