@@ -4,7 +4,7 @@ public class Driver{
 	
 	public static void main(String[] args){
 		
-		Game game = new Game("RPGjava", 640, 480);
+		Game game = new Game("Reign of Gods", 640, 480);
 		game.start();
 	}
 }
