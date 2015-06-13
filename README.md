@@ -6,4 +6,4 @@ Written by Kaan Gazne
 
 Coded by Tan Kucukoglu
 
-[![Build Status](https://travis-ci.org/tankucukoglu/RPGjava.svg?branch=master)](https://travis-ci.org/tankucukoglu/RPGjava)
+[![Build Status](https://travis-ci.org/tankucukoglu/ReignOfGods.svg?branch=master)](https://travis-ci.org/tankucukoglu/ReignOfGods)
