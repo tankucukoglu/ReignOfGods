@@ -1,6 +1,6 @@
 # Reign Of Gods
 
-A Java based 2d tile rpg game.
+Java based 2d tile rpg game.
 
 Written by Kaan Gazne
 
