@@ -1,4 +1,6 @@
-# RPGjava (working on a title)
+# Reign Of Gods
+
+A Java based 2d tile rpg game.
 
 Written by Kaan Gazne
 
